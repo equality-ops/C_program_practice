@@ -1,6 +1,10 @@
 #include<stdio.h>
 
+struct student {
+    int age;
+    char num[8];
+};
+
 int main(){
-    printf("hello world!");
-    return 0;
+    int n = 5;
 }
