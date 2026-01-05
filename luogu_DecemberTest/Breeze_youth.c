@@ -22,19 +22,45 @@ int main(){
     }
     for(i = 0;i < T;i++){
         scanf("%d%d%d%d", &message[i].r, &message[i].q, &message[i].n, &message[i].m);
-        if(message[i].n > (message[i].m / 3)){
-            if(((message[i].n - message[i].m / 3) * message[i].q + message[i].m) >= message[i].r){
-                strcpy(message[i].result, "Yes");
+        if(message[i].q * message[i].n < message[i].r){
+            if(message[i].n > (message[i].m / 3)){
+                if(((message[i].n - message[i].m / 3) * message[i].q + message[i].m) >= message[i].r){
+                    strcpy(message[i].result, "Yes");
+                }else{
+                    strcpy(message[i].result, "No");
+                }
             }else{
-                strcpy(message[i].result, "No");
+                if(message[i].m >= message[i].r){
+                    strcpy(message[i].result, "Yes");
+                }else{
+                    strcpy(message[i].result, "No");
+                }
             }
         }else{
-            if(message[i].m >= message[i].r){
-                strcpy(message[i].result, "Yes");
+           int actual_q = (message[i].r - 1) / message[i].n;
+
+            if(message[i].n > (message[i].m / 3)){
+                int temp = (message[i].n - message[i].m / 3) * actual_q + message[i].m;
+                if(temp >= message[i].r){
+                    strcpy(message[i].result, "Yes");
+                }else{
+                    int rest = message[i].r - message[i].n * actual_q - 1;
+
+                    if((rest - message[i].m / 3) + temp >= message[i].r){
+                        strcpy(message[i].result, "Yes");
+                    }else{
+                        strcpy(message[i].result, "No");
+                    }
+                }
             }else{
-                strcpy(message[i].result, "No");
+                if(message[i].m >= message[i].r){
+                    strcpy(message[i].result, "Yes");
+                }else{
+                    strcpy(message[i].result, "No");
+                }
             }
         }
+
     }
     for(i = 0;i < T;i++){
         printf("%s\n", message[i].result);

@@ -1,10 +1,10 @@
-#include<stdio.h>
-
-struct student {
-    int age;
-    char num[8];
-};
+#include <stdio.h>
 
 int main(){
-    int n = 5;
+    int a[][2] = {{1, 2}, {3, 1}};
+    int *p = a[0];
+    for(int i;i < 4;i++){
+        printf("%d ", *(p + i));
+    }
+    return 0;
 }
